@@ -1,3 +1,5 @@
+package org.daniel.lungu;
+
 import java.util.HashSet;
 import java.util.Set;
 

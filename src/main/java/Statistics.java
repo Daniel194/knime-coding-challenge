@@ -3,21 +3,27 @@ import java.util.Set;
 
 /**
  * Captures statistics about the lines being read from the input file.
- * 
+ *
  * @author KNIME GmbH
  */
 public class Statistics {
 
 	private final Set<String> linesRead = new HashSet<>();
-
 	private int lineCounter;
+
+	private static class Loader {
+		static final Statistics INSTANCE = new Statistics();
+	}
+
+	private Statistics() {
+
+	}
 
 	/**
 	 * Updates statistics with respect to the given line. This method is supposed to
 	 * be called when a new line has been read from the input file.
-	 * 
-	 * @param line
-	 *            A new line that has been read from the input file.
+	 *
+	 * @param line A new line that has been read from the input file.
 	 */
 	public void updateStatisticsWithLine(final String line) {
 		lineCounter++;
@@ -25,7 +31,6 @@ public class Statistics {
 	}
 
 	/**
-	 * 
 	 * @return the total number of lines read.
 	 */
 	public int getNoOfLinesRead() {
@@ -33,7 +38,6 @@ public class Statistics {
 	}
 
 	/**
-	 * 
 	 * @return the number of unique lines read.
 	 */
 	public int getNoOfUniqueLines() {
@@ -41,11 +45,9 @@ public class Statistics {
 	}
 
 	/**
-	 * 
 	 * @return the shared {@link Statistics} instance to use.
 	 */
 	public static Statistics getInstance() {
-		// FIXME: needs to be implemented
-		return null;
+		return Loader.INSTANCE;
 	}
 }
